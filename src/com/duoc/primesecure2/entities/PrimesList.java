@@ -1,3 +1,5 @@
+package com.duoc.primesecure2.entities;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
