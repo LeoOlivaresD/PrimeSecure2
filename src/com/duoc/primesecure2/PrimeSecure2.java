@@ -1,6 +1,8 @@
 package com.duoc.primesecure2;
 
 import com.duoc.primesecure2.entities.PrimesList;
+import com.duoc.primesecure2.input.ReaderPrimes;
+import com.duoc.primesecure2.output.WriterPrimesCsv;
 import com.duoc.primesecure2.threads.PrimesThread;
 
 public class PrimeSecure2 {
@@ -19,5 +21,8 @@ public class PrimeSecure2 {
         }
 
         primesList.getPrimesCount();//finalmente devuelvo la lista de numeros primos
+        System.out.println("Generando archivo csv");
+        WriterPrimesCsv.savePrimesListToCsv(primesList);
+        ReaderPrimes.readerCsv();
     }
 }
