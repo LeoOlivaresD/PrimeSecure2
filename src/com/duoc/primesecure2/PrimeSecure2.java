@@ -6,9 +6,18 @@ import com.duoc.primesecure2.threads.PrimesThread;
 public class PrimeSecure2 {
 
     public static void main(String[] args) {
-        //Creacion de objetos 
-     PrimesList primesList = new PrimesList();
-     PrimesThread primesThread = new PrimesThread();
+        // Creación de objetos
+        PrimesList primesList = new PrimesList();
+        PrimesThread runnable = new PrimesThread(primesList);//paso el objeto de primesList en el constructor de mi clase PrimesThread
+        Thread thread = new Thread(runnable);
+        thread.start();//inicializo el hilo
+
+        try {
+            thread.join(); // Espero a que el hilo termine
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        primesList.getPrimesCount();//finalmente devuelvo la lista de numeros primos
     }
-    
 }
