@@ -5,7 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class MensajeEncriptado {
-
     public static void generarMensaje(Mensaje mensaje, Integer idMensaje, String inputUsuario) {
         mensaje.setMensaje(inputUsuario);
         mensaje.setIdMensaje(idMensaje);
