@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class MensajeEncriptado {
-    public static void generarMensaje(Mensaje mensaje, Integer idMensaje, String inputUsuario) {
+    public synchronized static void generarMensaje(Mensaje mensaje, Integer idMensaje, String inputUsuario) {
         mensaje.setMensaje(inputUsuario);
         mensaje.setIdMensaje(idMensaje);
         mensaje.getListaMensajes().add(mensaje);
@@ -13,7 +13,7 @@ public class MensajeEncriptado {
         guardarMensajeEnTxt(mensaje);
     }
 
-    public static void guardarMensajeEnTxt(Mensaje mensaje) {
+    public synchronized static void guardarMensajeEnTxt(Mensaje mensaje) {
         String salto = System.lineSeparator();
         try (FileWriter fw = new FileWriter("listado mensajes.txt", true)) {
             fw.write(mensaje.toString() + salto);
