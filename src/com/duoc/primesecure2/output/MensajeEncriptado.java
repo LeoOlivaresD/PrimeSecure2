@@ -20,7 +20,7 @@ public class MensajeEncriptado {
         mensaje.setMensaje(encryptedMessage);
         mensaje.setIdMensaje(idMensaje);
         mensaje.getListaMensajes().add(mensaje);
-        //guardo el mensaje en un archivo de texto
+        //Guardo el mensaje en un archivo de texto
         guardarMensajeEnTxt(mensaje);
     }
 

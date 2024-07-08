@@ -56,7 +56,7 @@ public class PrimesList extends ArrayList<Integer> {
         }
         for (int i = 2; i <= Math.sqrt(numero); i++) {
             if (numero % i == 0) {
-                System.out.println("No es primo");
+                //System.out.println("No es primo");
                 return false;
             }
         }
