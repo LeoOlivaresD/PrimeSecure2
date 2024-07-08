@@ -6,15 +6,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class MensajeEncriptado {
-    private static PrimesList primesList;
-    private static Encryptor encryptor;
-    
+
+    private PrimesList primesList;
+    private Encryptor encryptor;
+
     public MensajeEncriptado(PrimesList primesList) {
-        MensajeEncriptado.primesList = primesList;
-        MensajeEncriptado.encryptor = new Encryptor(primesList);
+        this.primesList = primesList;
+        this.encryptor = new Encryptor(primesList);
     }
-    
-    public synchronized static void generarMensaje(Message mensaje, Integer idMensaje, String inputUsuario) {
+
+    public synchronized void generarMensaje(Message mensaje, Integer idMensaje, String inputUsuario) {
         String encryptedMessage = encryptor.encryptMessage(inputUsuario);
         mensaje.setMensaje(encryptedMessage);
         mensaje.setIdMensaje(idMensaje);
@@ -23,12 +24,13 @@ public class MensajeEncriptado {
         guardarMensajeEnTxt(mensaje);
     }
 
-    public synchronized static void guardarMensajeEnTxt(Message mensaje) {
+    public synchronized void guardarMensajeEnTxt(Message mensaje) {
         String salto = System.lineSeparator();
-        try (FileWriter fw = new FileWriter("listado mensajes.txt", true)) {
-            fw.write(mensaje.toString() + salto);
+        try (FileWriter fw = new FileWriter("listado_mensajes.txt", true)) {
+            fw.write(mensaje.getIdMensaje() + "," + mensaje.getMensaje() + salto);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

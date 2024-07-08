@@ -43,7 +43,10 @@ public class Message {
 
     @Override
     public String toString() {
+        return idMensaje + "," + mensaje;
+    }
+    /*public String toString() {
         return "Mensaje{" + "idMensaje = "  + idMensaje + ", mensaje= " + mensaje + '}';
     }
-    
+    */
 }

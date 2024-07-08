@@ -23,8 +23,8 @@ public class PrimesThread implements Runnable {
     public void run() {
         // Generar numero random y determinar con el metodo isPrime si es primo para luego agregarlo a una lista
         try {
-            for (int i = 0; i < 15; i++) {
-                Thread.sleep(1000); // Pauso el hilo por 1 segundo
+            for (int i = 0; i < 100; i++) {
+                Thread.sleep(1); // Pauso el hilo por 1 segundo
                 Random numeroRamdon = new Random(); //Comienzo con logica pra crear numero random
                 int min = 1;
                 int max = 100000;

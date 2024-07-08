@@ -38,28 +38,24 @@ public class ReaderComponents {
 
     //Con este metodo desencriptare mensajes desde un txt
     public static List<Message> leerMensajesEncriptados(String nombreArchivo, PrimesList primesList) {
-        List<Message> mensajes = new ArrayList<>();
-        Encryptor encryptor = new Encryptor(primesList);
+        List<Message> listaMensajes = new ArrayList<>();
+        Encryptor decryptor = new Encryptor(primesList);
 
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Parsea el mensaje y el id del archivo
-                String[] parts = line.split(", mensaje= ");
-                if (parts.length == 2) {
-                    String idPart = parts[0].replace("Mensaje{idMensaje = ", "").trim();
-                    String mensajePart = parts[1].replace('}', ' ').trim();
+                String[] partes = line.split(",", 2); // Dividir solo en la primera coma
+                int idMensaje = Integer.parseInt(partes[0]);
+                String mensajeEncriptado = partes[1];
+                String mensajeDesencriptado = decryptor.decryptMessage(mensajeEncriptado);
 
-                    Integer idMensaje = Integer.parseInt(idPart);
-                    String mensajeDesencriptado = encryptor.decryptMessage(mensajePart);
-
-                    Message mensaje = new Message(mensajeDesencriptado, idMensaje);
-                    mensajes.add(mensaje);
-                }
+                Message mensaje = new Message(mensajeDesencriptado, idMensaje);
+                listaMensajes.add(mensaje);
             }
-        } catch (IOException e) {
+        } catch (IOException | NumberFormatException e) {
             e.printStackTrace();
         }
-        return mensajes;
+
+        return listaMensajes;
     }
 }
