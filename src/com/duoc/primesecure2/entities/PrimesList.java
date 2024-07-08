@@ -65,7 +65,7 @@ public class PrimesList extends ArrayList<Integer> {
 
     // Con este metodo imprimo una lista de numeros primos
     public void getPrimesCount() {
-        System.out.println("Imprimiendo numeros primos de la lista");
+        System.out.println("Imprimiendo numeros primos de la lista con metodo GetPrimesCount");
         for (int n : this) { //con este this me refiero a la clase misma y como es una lista la recorre con un for each
             System.out.println(n);
         }

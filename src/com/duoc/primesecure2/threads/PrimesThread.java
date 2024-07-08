@@ -22,6 +22,8 @@ public class PrimesThread implements Runnable {
 
     @Override
     public void run() {
+        System.out.println("Iniciando sistema");
+        System.out.println("Generando numeros primos");
         try {
             for (int i = 0; i < 299; i++) {
                 synchronized (primesList) {
@@ -40,8 +42,8 @@ public class PrimesThread implements Runnable {
                     // Pausar el hilo si el tamaño de la lista es múltiplo de 25
                     if (primesList.size() % 25 == 0) {
                         System.out.println("Pausando el hilo por medio segundo...");
-                        primesList.wait(500);
-                        primesList.notifyAll(); // Notifica para continuar
+                        primesList.wait(500); //Uso de wait y notify para manejo de concurrencia dentro del hilo mismo
+                        primesList.notifyAll();
                         System.out.println("Reanudando");
                     }
                 }

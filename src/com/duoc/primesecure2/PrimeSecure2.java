@@ -19,28 +19,33 @@ public class PrimeSecure2 {
         Thread thread = new Thread(runnable);
         thread.start();//inicializo el hilo
         try {
-           thread.join(); // Espero a que el hilo termine
+            thread.join(); // Espero a que el hilo termine
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        primesList.getPrimesCount();//Finalmente devuelvo la lista de numeros primos
+        primesList.getPrimesCount(); //Finalmente devuelvo la lista de numeros primos
         System.out.println("Generando archivo csv");
         WriterPrimesCsv.savePrimesListToCsv(primesList); // Guardo esa lista en un archivo csv
+        System.out.println("Archivo csv guardado con exito");
+        System.out.println("Leyendo archivo csv");
         ReaderComponents.readerCsv(); //Ademas implento metodo para poder leer el csv y añadir esos numeros a una lista
 
-        //Aca impleneto la logica para generar un mensaje
+        //Aca implemento la logica para generar un mensaje
+        System.out.println("Sistema de encriptacion listo");
         MensajeEncriptado mensajeEncriptado = new MensajeEncriptado(primesList);
-        System.out.println("Ingrese un mensaje");
+        System.out.println("Ya puede ingresar un mensaje");
         Scanner sc = new Scanner(System.in);
         String mensaje = sc.nextLine();
         //Con este metodo guardo un mensaje, le asigno un id numero primo y ademas lo almaceno en un txt
+        System.out.println("Guardando mensaje encriptado en archivo txt...");
         mensajeEncriptado.generarMensaje(mensajeria, primesList.get(0), mensaje);
-
+        System.out.println("Listo !!");
         // Leo y desencripto mensajes usando ReaderPrimes
+        System.out.println("Leyendo mensaje encriptado");
         List<Message> mensajes = ReaderComponents.leerMensajesEncriptados("listado_mensajes.txt", primesList);
         for (Message mensajee : mensajes) {
-            System.out.println("Mensaje desencriptado: " + mensajee.getMensaje() + " id mensaje: "+ mensajee.getIdMensaje());
+            System.out.println("Mensaje desencriptado: " + mensajee.getMensaje() + " id mensaje: " + mensajee.getIdMensaje());
         }
 
     }
