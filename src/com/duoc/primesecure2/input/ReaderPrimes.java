@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ReaderPrimes {
 
+    //Metodo encargado de leer numeros primos desde un csv
     public static List<Integer> readerCsv() {
         String nombreArchivo = "primes_list.csv";
         List<Integer> listaCsv = new ArrayList<>();
@@ -34,6 +35,7 @@ public class ReaderPrimes {
         }
         return listaCsv;
     }
+
     //Con este metodo desencriptare mensajes desde un txt
     public static List<Mensaje> leerMensajesEncriptados(String nombreArchivo, PrimesList primesList) {
         List<Mensaje> mensajes = new ArrayList<>();
@@ -42,7 +44,7 @@ public class ReaderPrimes {
         try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
             String line;
             while ((line = br.readLine()) != null) {
-                // Parsear el mensaje y el id del archivo
+                // Parsea el mensaje y el id del archivo
                 String[] parts = line.split(", mensaje= ");
                 if (parts.length == 2) {
                     String idPart = parts[0].replace("Mensaje{idMensaje = ", "").trim();
