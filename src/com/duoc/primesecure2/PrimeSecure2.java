@@ -41,7 +41,7 @@ public class PrimeSecure2 {
         System.out.println("Guardando mensaje encriptado en archivo txt...");
         mensajeEncriptado.generarMensaje(mensajeria, primesList.get(0), mensaje);
         System.out.println("Listo !!");
-        // Leo y desencripto mensajes usando ReaderPrimes
+        // Leo y desencripto mensajes usando ReaderComponents
         System.out.println("Leyendo mensaje encriptado");
         List<Message> mensajes = ReaderComponents.leerMensajesEncriptados("listado_mensajes.txt", primesList);
         for (Message mensajee : mensajes) {
